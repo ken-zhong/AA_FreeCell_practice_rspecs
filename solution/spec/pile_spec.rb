@@ -61,6 +61,8 @@ describe Foundation do
   subject(:foundation){Foundation.new}
   let(:card1) { Card.new(:hearts, :ace)}
   let(:card2) { Card.new(:hearts, :deuce)}
+  let(:card3) { Card.new(:hearts, :three)}
+  let(:card4) { Card.new(:spades, :three)}
 
   describe '#add_card' do
     it 'should let you add aces to an empty foundation pile' do
@@ -72,11 +74,22 @@ describe Foundation do
       expect{ foundation.add_card(card2)}.to raise_error('invalid placement!')
     end
 
-    it 'should let you add consecutive numbered cards to a foundation pile' do
+    it 'should let you add consecutive same suit numbered cards to a foundation pile' do
       foundation.add_card(card1)
       foundation.add_card(card2)
       expect(foundation.top_card).to eq(card2)
     end
+
+    it 'should not let you add non-consecutive cards to a foundation pile' do
+      foundation.add_card(card1)
+      expect{ foundation.add_card(card3) }.to raise_error("invalid placement!")
+    end
+
+    it 'should not let you non-consecutive cards from diff suit to a foundation pile' do
+      foundation.add_card(card1)
+      expect{ foundation.add_card(card4) }.to raise_error("invalid placement!")
+    end
+
   end
 
   describe '#take_card' do
