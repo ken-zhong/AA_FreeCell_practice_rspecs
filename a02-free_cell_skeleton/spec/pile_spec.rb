@@ -19,8 +19,6 @@ describe Pile do
     let(:card3) {double('card3')}
 
     it 'should raise an error if the pile is empty' do
-      p pile
-      p pile.store
       expect{ pile.top_card }.to raise_error('This pile is empty!')
     end
 
