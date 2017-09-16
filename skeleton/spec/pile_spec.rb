@@ -54,7 +54,7 @@ describe FreeCell do
       expect(freecell.take_card).to eq(card1)
       expect(freecell.empty?).to be true
     end
-end
+  end
 end
 
 describe Foundation do
@@ -76,6 +76,14 @@ describe Foundation do
       foundation.add_card(card1)
       foundation.add_card(card2)
       expect(foundation.top_card).to eq(card2)
+    end
+  end
+
+  describe '#take_card' do
+    it 'should let you remove cards from it' do
+      foundation.add_card(card1)
+      expect(foundation.take_card).to eq(card1)
+      expect(foundation.empty?).to be true
     end
   end
 end
@@ -100,6 +108,14 @@ describe Tableau do
     it 'should raise an error if you try to add a non-conforming card to the pile' do
       tableau.add_card(card2)
       expect{ tableau.add_card(card1)}.to raise_error("invalid placement!")
+    end
+  end
+
+  describe '#take_card' do
+    it 'should let you remove cards from it' do
+      tableau.add_card(card1)
+      expect(tableau.take_card).to eq(card1)
+      expect(tableau.empty?).to be true
     end
   end
 end
