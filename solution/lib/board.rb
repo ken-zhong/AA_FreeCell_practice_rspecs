@@ -9,19 +9,15 @@ class Board
 
   def initialize(deck)
     @deck = deck
-    @foundations = []
-    @freecells = []
-    @tableaus = []
+    @foundations = Array.new(4) { Foundation.new }
+    @freecells = Array.new(4) { FreeCell.new }
+    @tableaus = Array.new(8) { Tableau.new }
 
     #NOTE call the setup helper method in here! Don't dump all the code in init
     setup_board
   end
 
   def setup_board
-    8.times { tableaus << Tableau.new }
-    4.times { freecells << FreeCell.new }
-    4.times { foundations << Foundation.new }
-
     until @deck.count == 0
       @tableaus.each do |pile|
         break if @deck.count == 0

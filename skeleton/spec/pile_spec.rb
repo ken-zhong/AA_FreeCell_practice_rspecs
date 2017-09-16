@@ -89,7 +89,6 @@ describe Foundation do
       foundation.add_card(card1)
       expect{ foundation.add_card(card4) }.to raise_error("invalid placement!")
     end
-
   end
 
   describe '#take_card' do
