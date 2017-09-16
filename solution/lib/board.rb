@@ -29,5 +29,4 @@ class Board
 
   def won?
   end
-
 end
