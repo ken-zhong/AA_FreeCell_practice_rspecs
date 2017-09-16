@@ -1,4 +1,5 @@
-require 'pile.rb'
+require 'pile'
+require 'card'
 
 describe Pile do
   subject(:pile) {Pile.new}
@@ -41,12 +42,19 @@ describe FreeCell do
       expect(freecell.top_card).to eq(card1)
     end
 
+    it 'should raise an error if the freecell is not empty' do
+      freecell.add_card(card1)
+      expect{ freecell.add_card(card1) }.to raise_error("invalid placement!")
+    end
+  end
+
+  describe '#take_card' do
     it 'should let you remove cards from it' do
       freecell.add_card(card1)
       expect(freecell.take_card).to eq(card1)
       expect(freecell.empty?).to be true
     end
-  end
+end
 end
 
 describe Foundation do

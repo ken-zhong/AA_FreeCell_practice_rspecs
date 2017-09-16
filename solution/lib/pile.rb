@@ -41,7 +41,8 @@ end
 
 class FreeCell < Pile
   def valid_placement?(card)
-    true
+    return true if empty?
+    false
   end
 end
 
